@@ -1,0 +1,237 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: break
+  examples: |
+    - break
+    - BREAK
+    - bteak
+    - breal
+    - brwak
+    - bresk
+    - nreak
+    - vreak
+
+- intent: stop
+  examples: |
+    - stop
+    - STOP
+    - swop
+    - sto[
+    - stpp
+    - stoo
+    - atop
+    - syop
+    - srop
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - ye
+    - uh yes
+    - let's do it
+    - yeah
+    - uh yes
+    - um yes
+    - yes knocking
+    - that's correct
+    - yes yes
+    - right
+    - yea
+    - yes
+    - yes right
+    - yes and i dont care
+    - right on
+    - i love that
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - maybe
+    - I don't mind
+    - ok
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - no thanks
+    - no thank you
+    - uh no
+    - breath no
+    - do you have something else
+    - no this does not work for me
+    - nope
+    - nu uh
+
+- intent: small_size
+  examples: |
+    - small
+    - Small
+    - s
+    - S
+    - Little
+    - smallest
+    - tiny
+    - smol
+    - smal
+    - amall
+    - snall
+    - Small size
+    - Smallest one please
+    - First one
+    - As small as possible
+
+- intent: medium_size
+  examples: |
+    - medium
+    - Medium
+    - m
+    - M
+    - Half
+    - In the middle
+    - Medium one please
+    - midle
+    - mid
+    - niddle
+    - midlle
+    - mislle
+    - Middle size
+    - Medium sized
+    - Nedium
+    - Mediun
+    - Mesium
+    - Average
+
+- intent: large_size
+  examples: |
+    - Large
+    - large
+    - l
+    - L
+    - Big
+    - Huge
+    - As large as possible
+    - Your biggest
+    - Last one
+    - Karge
+    - Lar
+    - Lsrge
+    - Laege
+    - Largest one please
+    - big
+    - beeg
+
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: ask_opening_times
+  examples: |
+    - Hi, what are the Post Office opening times?
+    - When are you open
+    - I have something to post, when can I come to leave it?
+    - Are you open on weekends
+    - When is the Post Office open?
+    - What time does the Post Office shut
+    - When do you close?
+    - What are your opening hours
+    - What are the Post Office's opening hours?
+    - What are the opening hours of the Post Office?
+    - Can you tell me when the Post Office opens and closes
+    - What time does the Post Office open today?
+    - What are the working hours of the nearest Post Office?
+    - Can you check the opening times for the Post Office
+    - Please tell me the post office's opening hours
+    - How long is the Post Office open?
+    - On what days are you open?
+    - What days can I visit the Post Office?
+    - Tell me the Post Office opening times
+  
+- intent: ask_avg_delivery_times
+  examples: |
+    - What are the average delivery times for parcels?
+    - If I were to send a parcel, how long would it take to arrive?
+    - How long do you take to deliver mail?
+    - Is there a long wait for mail delivery
+    - What can I expect the timeframe to be for post delivery?
+    - If I sent a parcel today, how long would it take to arrive
+    - How long does it take to deliver a parcel
+    - Tell me the parcel delivery times 
+    - How quick is the Post Office at delivering parcels?
+    - On average, how long does package transit take?
+    - Does it take a while for the Post Office to deliver packages?
+    - How long does it usually take for a parcel to be delivered?
+    - Can you tell me how many days it takes for a parcel to arrive?
+    - What’s the typical shipping time for a package
+    - How long should I expect to wait for a mail delivery?
+    - What’s the standard delivery time for package sent via the Post Office?
+    - How many days does it usually take for a package to be delivered?
+    - How long does parcel shipping take on average?
+    - Could you list the mail delivery times for me
+
+- intent: ask_postage_options
+  examples: |
+    - I want to send some clothes to my friend. What postage should I use?
+    - Could you walk me through potential postage options suitable for sending a parcel?
+    - List some postage options that would be suitable for sending a parcel
+    - Can you give me some advice on mailing options approrpriate for sending a parcel?
+    - What postage options are there for me mailing a parcel?
+    - I wish to send some clothes to a friend, can you advise me on how to do that?
+    - Do you have any recommendations for shipping for sending a parcel
+    - Give me your recommendations of postage for a box
+    - If you had to send a package, what postage option would you use?
+    - What kind of pricing is there for sending a package?
+    - What are the available mailing options for sending a parcel
+    - What are some recommended postage methods for mailing a box of clothes?
+    - I need to send my friend a package — what shipping would you recommend
+    - Could you list some cheapest ways to post a parcel?
+    - I’m looking to mail a bunch of clothes — what are my postage options?
+    - Can you give me a step by step walkthrough of shipping options available for sending a package
+    - Please help me pick the approrpriate postage for sending a parcel
+    - I don't know what shipping to buy for sending a box of clothes. Could you give me some advice?
+    - What mail options does the Post Office offer for mailing packages?
+    - What is the cheapest option available for me to send some clothes to my friend?
+    - How can I send a parcel to a friend for the lowest possible cost?
+    - I want to send something to a friend of mine and keep the costs as low as possible, can you give me some advice?
+    - Can you help me pick the right option for sending a parcel of clothes?
+    - What are the postage options available for sending a parcel of clothes?
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?

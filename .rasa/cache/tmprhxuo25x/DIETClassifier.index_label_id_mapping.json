@@ -1,0 +1,15 @@
+{
+  "0": "affirm",
+  "1": "ask_avg_delivery_times",
+  "2": "ask_opening_times",
+  "3": "ask_postage_options",
+  "4": "bot_challenge",
+  "5": "break",
+  "6": "deny",
+  "7": "goodbye",
+  "8": "greet",
+  "9": "large_size",
+  "10": "medium_size",
+  "11": "small_size",
+  "12": "stop"
+}

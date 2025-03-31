@@ -1,0 +1,200 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - ask_opening_times
+  - ask_avg_delivery_times
+  - ask_postage_options
+  - bot_challenge
+  - break
+  - stop
+  - small_size
+  - medium_size
+  - large_size
+
+### Slots for these chatbots will be different, and there will be less of them: the address slots will remain, and there will now be a
+### is_first_class slot which will be a bool kind of like the tracked slot, and a size slot which will be a categorical slot
+
+slots:
+  first_class:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: affirm
+      value: true
+      conditions:
+      - active_loop: postage_form
+        requested_slot: first_class
+    - type: from_intent
+      intent: deny
+      value: false
+      conditions:
+      - active_loop: postage_form
+        requested_slot: first_class
+  postage_size:
+    type: categorical
+    influence_conversation: false
+    values:
+      - Small
+      - Medium
+      - Large
+    mappings:
+    - type: from_intent
+      intent: small_size
+      value: Small
+      conditions:
+      - active_loop: postage_form
+        requested_slot: postage_size
+    - type: from_intent
+      intent: medium_size
+      value: Medium
+      conditions:
+      - active_loop: postage_form
+        requested_slot: postage_size
+    - type: from_intent
+      intent: large_size
+      value: Large
+      conditions:
+      - active_loop: postage_form
+        requested_slot: postage_size
+  reciever_address:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: address_form
+        requested_slot: reciever_address
+  sender_address:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: address_form
+        requested_slot: sender_address
+
+responses:
+  utter_greet:
+  - text: "Hello, I'm Alex, and I work for the Post Office. How can I assist you today?"
+
+  utter_opening_times:
+  - text: "Opening times vary depending on which post office branch you are visiting. That being said, the typical opening time for our post office branches are as follows: \n\nMonday: 09:00 - 17:30
+      Tuesday: 09:00 - 17:30 \n
+      Wednesday: 09:00 - 17:30 \n
+      Thursday: 09:00 - 17:30 \n
+      Friday: 09:00 - 17:30 \n
+      Saturday: 09:00 - 13:00 \n
+      Sunday: Closed \n\nIf these times are not suitable for you, you can always post your item by putting it in your nearest letterbox."
+
+  utter_avg_delivery_times:
+  - text: "That heavily depends on the postage class you purchase for your parcel. \n\nIf your parcel is sent through 1st Class Postage, it should arrive at its destination within 1 to 2 business days. \n\nIf you sent your parcel through 2nd Class Postage, your parcel should arrive within 3 to 5 business days. \n\nWe try our best to deliver each parcel within the time frames described above, but there is always a chance of a 1-2 day delay."
+
+  utter_anything_else:
+  - text: "Can I help with anything else?"
+
+  utter_ask_further:
+  - text: "That's great! What else can I help with?"
+
+  utter_confirm_further_help:
+  - text: "That's alright. If any other questions come to mind, feel free to ask them here and I will do my best to answer."
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_parcel_box:
+  - text: "On it! Since this will be a package, you will need to purchase an appropriately sized box. You can purchase boxes from your local Post Office branch and most stationary stores. Of course, if it is durable enough, you can also repurpose any box you may find at home!"
+
+  # ### Remember, the formula is: utter_ask_<form_name>_<slot_name>
+  utter_ask_postage_form_postage_size:
+  - text: "When it comes to parcels, we offer three size categories. The parcel’s category is determined based on its dimensions: \n\nSmall: 45x35x16cm, <2kg\nMedium: 61x46x46cm, 2-5kg\nLarge: 100x100x100cm, >5kg \n\nIf a parcel’s dimensions don’t exceed any of the above-mentioned measurements, they belong to that category. Which category would your parcel fit in?"
+
+  utter_ask_postage_form_first_class:
+  - text: "Excellent! Regarding the postage class, I would recommend sending the parcel using 1st class postage. That way, your parcel will arrive at your chosen destination within 1-2 business days. \n\nThe only alternative is 2nd class postage. Although the parcel will take longer to arrive, taking between 3 to 5 business days, it is a cheaper postage option if your priority is cost. \n\nHere is the pricing for both classes:
+      \n\n1st Class Postage: \n
+      Small: £4.85 \n
+      Medium: £5.60 \n
+      Large: £7.20 \n\n2nd Class Postage: \n
+      Small: £3.25 \n
+      Medium: £4.85 \n
+      Large: £6.50 \n\nDoes 1st Class Postage fit your needs? If not, going forward, I will assume that 2nd Class Postage is more suitable."
+
+  utter_purchase_interest:
+  - text: "If you want, I can walk you through a step by step process of buying the selected postage option. You will be able to stop the process at any point by simply sending a message ‘break’. If you make a mistake at any point, wait until the summary is displayed and say ‘no’ when asked if the information is correct. \n\n Would you like to continue?"
+
+  utter_end_of_simulation:
+  - text: "(THIS MARKS THE END OF THE SIMULATION, PLEASE CLICK ON THE FOLLOWING LINK TO BE TAKEN TO THE QUESTIONNAIRE)"
+
+  utter_quick_end_of_simulation:
+  - text: "That's alright. If any other questions come to mind, feel free to ask them here and I will do my best to answer. \n\n(THIS MARKS THE END OF THE SIMULATION, PLEASE CLICK ON THE FOLLOWING LINK TO BE TAKEN TO THE QUESTIONNAIRE)"
+
+  utter_ask_address_form_reciever_address:
+  - text: "Great! Please provide the address of the receiver"
+
+  utter_ask_address_form_sender_address:
+  - text: "Thank you. And please provide your address"
+
+  utter_payment:
+  - text: "Thank you. Please proceed to payment. \n\n(THIS MARKS THE END OF THE SIMULATION, PLEASE CLICK ON THE FOLLOWING LINK TO BE TAKEN TO THE QUESTIONNAIRE)"
+
+  utter_repeat:
+  - text: "Would you like to re-enter any of the details?"
+
+  utter_brievity:
+  - text: "(FOR THE SAKE OF BRIEVITY, YOU ARE NOT REQUIRED TO RE-ENTER THE DETAILS)\n\n (THIS MARKS THE END OF THE SIMULATION. PLEASE CLICK ON THE FOLLOWING LINK TO BE TAKEN TO THE QUESTIONNAIRE)"
+
+  utter_breaking:
+  - text: "That's alright! The purchase process has been stopped, and all information you've entered has been erased. If you would like to ask any other questions, let me know and I will do my best to answer."
+
+  utter_please_rephrase:
+  - text: "I'm sorry, I didn't quite understand that. Could you rephrase? \n\n(SIMULATION MESSAGE: IF YOU HAVE SEEN THIS MESSAGE MULTIPLE TIMES, PLEASE USE THE 'SUGGESTED ANSWERS' BUTTONS)"
+
+  utter_inform_rephrase:
+  - text: "I'm sorry, I didn't quite understand this answer. Maybe I didn't make myself clear. I will repeat the question again, could you please rephrase your answer? \n\n(SIMULATION MESSAGE: IF YOU HAVE SEEN THIS MESSAGE MULTIPLE TIMES, PLEASE USE THE BUTTONS BELOW)"
+
+  utter_default:
+  - text: "(SIMULATION MESSAGE: THE CHATBOT DIDN'T RECOGNISE YOUR MESSAGE'S INTENTION. PLEASE REPHRASE OR USE THE 'SUGGESTED ANSWERS' BUTTONS)"
+
+  utter_address_summary:
+  - text: "Thank you. So, to ensure I have everything correct:\n
+      Summary \n
+      Address of Receiver: \n
+      {reciever_address} \n
+      Address of Sender: \n
+      {sender_address} \n\n
+      Is this correct?"
+
+### So these actions will need to be replaced by the proper actions for this half of the chatbots
+### Though funnily enough, the names might be the same so I might just uncomment this - the two actions required are still smth to do with postage form validation
+### and calculation of postage costs
+actions:
+- action_calculate_postage
+
+
+### Currently commented out but will probably be fairly similar, the only main thing that will change is the required slots in the postage_form
+forms:
+  postage_form:
+    ignored_intents:
+    - stop
+    required_slots:
+      - postage_size
+      - first_class
+
+  address_form:
+    ignored_intents:
+    - stop
+    - break
+    required_slots:
+      - reciever_address
+      - sender_address
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
