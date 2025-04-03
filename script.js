@@ -1,5 +1,5 @@
 // TODO: remember that for site_2, THIS WILL NEED TO CHANGE TO THE ACTUAL SITE WHERE THE LOW ANTHRO BOT WILL BE KEPT
-let rasaServerUrl = "http://localhost:5005/webhooks/rest/webhook";
+let rasaServerUrl = "https://site-3-820874387134.europe-west2.run.app/webhooks/rest/webhook";
 
 // Potential chatbot responses, literally hardcoded in -> when working with real chatbot, will need to change this
 let responses = {
@@ -109,7 +109,7 @@ async function rasaInteraction(msg) {
             // Scroll to bottom
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // Wait for 2 seconds before replacing the "thinking" message
+            // The high anthropomorphism chatbots have a variable waiting time between each message, to create the feeling of someone typing
             await new Promise(resolve => setTimeout(resolve, Math.max(((count(msg.text) / 5) * 1000), 4000)));
 
             // Remove the "thinking" message

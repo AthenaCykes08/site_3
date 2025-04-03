@@ -11,11 +11,11 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 action_endpoint:
-### THIS WILL NEED TO BE CHANGED TO THE APPRORPRIATE ACTION SERVER
-#  url: "https://action-server-test-820874387134.europe-west2.run.app/webhook"
+## THIS WILL NEED TO BE CHANGED TO THE APPRORPRIATE ACTION SERVER
+  url: "https://actions-server-2-820874387134.europe-west2.run.app/webhook"
 
  ### THIS IS JUST FOR TESTING PURPOSES, REMEMBER TO REMOVE THIS LATER
- url: "http://localhost:5056/webhook"
+#  url: "http://localhost:5056/webhook"
 
 # Tracker store which is used to store the conversations.
 # By default the conversations are stored in memory.

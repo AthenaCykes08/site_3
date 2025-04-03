@@ -55,7 +55,7 @@ class ActionCalculatePostageLow(Action):
             case "Large":
                 post_cost = 7.20 if first_class else 6.50
         
-        cost_message = f"Summary: A {postage_size} parcel to be sent with {'1st' if first_class else '2nd'} Class Postage. \n\n Total cost: £{post_cost:.2f}"
+        cost_message = f"Summary: \nA {postage_size} parcel to be sent with {'1st' if first_class else '2nd'} Class Postage. \n\n Total cost: £{post_cost:.2f}"
 
         dispatcher.utter_message(cost_message)
         return []
